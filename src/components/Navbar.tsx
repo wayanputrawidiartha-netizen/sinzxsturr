@@ -25,6 +25,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
   const navItems = [
     { label: 'Beranda', target: 'hero' },
     { label: 'Layanan', target: 'layanan' },
+    { label: 'Saluran Stok', target: 'saluran-stok' },
     { label: 'Fee Rekber', target: 'rekber' },
     { label: 'Tentang', target: 'tentang' },
     { label: 'Keunggulan', target: 'keunggulan' },

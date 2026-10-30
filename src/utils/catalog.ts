@@ -1,5 +1,6 @@
 export const OFFICIAL_PHONE = '628886199242';
 export const WHATSAPP_BASE_URL = 'https://wa.me/628886199242';
+export const WHATSAPP_CHANNEL_URL = 'https://whatsapp.com/channel/0029VbDMDVbGufJ1AZ3tmq0D';
 export const TIKTOK_URL = 'https://www.tiktok.com/@sinzxstr.jb?_r=1&_t=ZS-9AyV8QRelhy';
 
 /**

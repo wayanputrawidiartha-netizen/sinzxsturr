@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { GameCategories } from './components/GameCategories';
+import { StockChannelSection } from './components/StockChannelSection';
 import { RekberFeeSection } from './components/RekberFeeSection';
 import { AboutBusinessSection } from './components/AboutBusinessSection';
 import { FeaturesSection } from './components/FeaturesSection';
@@ -30,6 +31,9 @@ export default function App() {
 
         {/* Section Fokus Layanan Game (FF & MLBB) */}
         <GameCategories />
+
+        {/* Section Saluran WhatsApp Stok Akun SINZXSTURR */}
+        <StockChannelSection />
 
         {/* Section REKBER & MIDDLEMAN FEE */}
         <RekberFeeSection />
