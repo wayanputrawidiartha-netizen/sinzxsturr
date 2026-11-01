@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ShieldCheck, MessageCircle, ExternalLink } from 'lucide-react';
 import { OFFICIAL_PHONE } from '../utils/catalog';
+import { WebsiteSettings } from '../types';
 
 interface NavbarProps {
   onNavigate: (sectionId: string) => void;
+  onOpenAdmin?: () => void;
+  settings?: WebsiteSettings;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onNavigate, onOpenAdmin, settings }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -24,13 +27,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
 
   const navItems = [
     { label: 'Beranda', target: 'hero' },
-    { label: 'Layanan', target: 'layanan' },
     { label: 'Saluran Stok', target: 'saluran-stok' },
     { label: 'Fee Rekber', target: 'rekber' },
-    { label: 'Tentang', target: 'tentang' },
-    { label: 'Keunggulan', target: 'keunggulan' },
-    { label: 'Alur Transaksi', target: 'alur-transaksi' },
-    { label: 'FAQ', target: 'faq' },
+    { label: 'Kontak', target: 'kontak' },
   ];
 
   const handleNavClick = (target: string) => {
@@ -91,6 +90,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
           {/* Desktop CTA Button */}
           <div className="hidden md:flex items-center gap-3">
             <button
+              onClick={() => (onOpenAdmin ? onOpenAdmin() : (window.location.pathname = '/admin'))}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium rounded-lg bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-cyan-300 border border-slate-700 hover:border-cyan-500/40 transition-all cursor-pointer"
+              title="Akses Portal Admin"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Admin</span>
+            </button>
+
+            <button
               onClick={() => handleNavClick('kontak')}
               className="relative inline-flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-wider font-semibold rounded-lg bg-gradient-to-r from-cyan-600/80 to-blue-700/80 hover:from-cyan-500 hover:to-blue-600 text-white shadow-[0_0_20px_rgba(6,182,212,0.3)] border border-cyan-400/40 transition-all transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
@@ -138,6 +146,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
                 <span>Hubungi Admin WhatsApp</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-70" />
               </a>
+
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onOpenAdmin) onOpenAdmin();
+                  else window.location.pathname = '/admin';
+                }}
+                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:text-cyan-300 font-mono text-xs"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Login Admin Portal</span>
+              </button>
             </div>
           </div>
         </div>

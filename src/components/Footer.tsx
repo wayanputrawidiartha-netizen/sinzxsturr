@@ -59,10 +59,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('layanan')}
+                  onClick={() => onNavigate('saluran-stok')}
                   className="hover:text-cyan-400 transition-colors cursor-pointer text-left"
                 >
-                  Layanan Game
+                  Saluran Stok WA
                 </button>
               </li>
               <li>
@@ -75,56 +75,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('tentang')}
+                  onClick={() => onNavigate('kontak')}
                   className="hover:text-cyan-400 transition-colors cursor-pointer text-left"
                 >
-                  Tentang Bisnis
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('keunggulan')}
-                  className="hover:text-cyan-400 transition-colors cursor-pointer text-left"
-                >
-                  Keunggulan
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('alur-transaksi')}
-                  className="hover:text-cyan-400 transition-colors cursor-pointer text-left"
-                >
-                  Alur Transaksi
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('faq')}
-                  className="hover:text-cyan-400 transition-colors cursor-pointer text-left"
-                >
-                  Pertanyaan (FAQ)
+                  Hubungi Admin
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Game Focus */}
+          {/* Col 4: Keamanan & Jaminan */}
           <div className="space-y-3">
             <h4 className="text-xs font-mono uppercase tracking-widest text-slate-200 font-bold">
-              Fokus Layanan
+              Keamanan Transaksi
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
-              <li className="hover:text-orange-400 transition-colors">
-                <button onClick={() => onNavigate('layanan')} className="cursor-pointer text-left">
-                  • Akun Free Fire (FF)
-                </button>
-              </li>
-              <li className="hover:text-cyan-400 transition-colors">
-                <button onClick={() => onNavigate('layanan')} className="cursor-pointer text-left">
-                  • Akun Mobile Legends (MLBB)
-                </button>
-              </li>
-              <li>• Konsultasi Harga Pasar Akun</li>
+              <li>• Saluran Update Stok Resmi</li>
+              <li>• Jasa Rekber & Middleman Terpercaya</li>
+              <li>• Transaksi Aman & Terarah</li>
               <li>• Panduan Rebind Akun Aman</li>
               <li>• Garansi Anti Hackback</li>
             </ul>

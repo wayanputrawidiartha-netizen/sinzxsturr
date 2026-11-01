@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import { ExternalLink, Sparkles, Send, ShieldCheck, Check } from 'lucide-react';
 import { OFFICIAL_PHONE, WHATSAPP_BASE_URL, TIKTOK_URL, createConsultationLink, formatPhoneDisplay } from '../utils/catalog';
+import { WebsiteSettings } from '../types';
 
-export const ContactSection: React.FC = () => {
+interface ContactSectionProps {
+  settings?: WebsiteSettings;
+}
+
+export const ContactSection: React.FC<ContactSectionProps> = ({ settings }) => {
   const [selectedGame, setSelectedGame] = useState<'Free Fire' | 'Mobile Legends'>('Free Fire');
   const [serviceType, setServiceType] = useState<'beli' | 'jual' | 'konsultasi'>('beli');
   const [consultNote, setConsultNote] = useState('');
   const [copied, setCopied] = useState(false);
+
+  const phone = settings?.whatsapp_number || OFFICIAL_PHONE;
+  const tiktokUrl = settings?.tiktok_url || TIKTOK_URL;
+  const whatsappUrl = `https://wa.me/${phone}`;
 
   const handleConsultSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,7 +24,7 @@ export const ContactSection: React.FC = () => {
   };
 
   const copyPhoneNumber = () => {
-    navigator.clipboard.writeText('+628886199242');
+    navigator.clipboard.writeText(`+${phone}`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -73,7 +82,7 @@ export const ContactSection: React.FC = () => {
                     className="text-cyan-300 font-mono hover:text-cyan-200 flex items-center gap-1 cursor-pointer"
                     title="Klik untuk menyalin nomor"
                   >
-                    <span>{formatPhoneDisplay(OFFICIAL_PHONE)}</span>
+                    <span>{formatPhoneDisplay(phone)}</span>
                     {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : null}
                   </button>
                 </div>
@@ -98,7 +107,7 @@ export const ContactSection: React.FC = () => {
 
               {/* WhatsApp Button */}
               <a
-                href={WHATSAPP_BASE_URL}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group w-full flex items-center justify-between p-4 rounded-xl bg-[#0e2a22]/80 hover:bg-[#12362b] border border-emerald-500/40 hover:border-emerald-400 text-white transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)] transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
@@ -114,7 +123,7 @@ export const ContactSection: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-sm font-bold text-white">Hubungi WhatsApp Resmi</p>
-                    <p className="text-xs text-emerald-300 font-mono">+62 888-6199-242</p>
+                    <p className="text-xs text-emerald-300 font-mono">{formatPhoneDisplay(phone)}</p>
                   </div>
                 </div>
                 <ExternalLink className="w-4 h-4 text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -122,7 +131,7 @@ export const ContactSection: React.FC = () => {
 
               {/* TikTok Button */}
               <a
-                href={TIKTOK_URL}
+                href={tiktokUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group w-full flex items-center justify-between p-4 rounded-xl bg-[#091526]/90 hover:bg-[#0d2038] border border-cyan-500/40 hover:border-pink-500/60 text-white transition-all shadow-[0_0_20px_rgba(6,182,212,0.2)] transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"

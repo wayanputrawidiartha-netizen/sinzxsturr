@@ -2,7 +2,12 @@ import React from 'react';
 import { ExternalLink, Radio, Sparkles, Bell, ShieldCheck, Flame, Swords } from 'lucide-react';
 import { WHATSAPP_CHANNEL_URL } from '../utils/catalog';
 
-export const StockChannelSection: React.FC = () => {
+interface StockChannelSectionProps {
+  channelUrl?: string;
+}
+
+export const StockChannelSection: React.FC<StockChannelSectionProps> = ({ channelUrl }) => {
+  const url = channelUrl || WHATSAPP_CHANNEL_URL;
   return (
     <section id="saluran-stok" className="py-20 relative overflow-hidden">
       {/* Holographic radial gradients & digital circuit backdrop */}
@@ -103,7 +108,7 @@ export const StockChannelSection: React.FC = () => {
             {/* Requested Primary CTA Button */}
             <div className="flex flex-col items-center justify-center gap-3">
               <a
-                href={WHATSAPP_CHANNEL_URL}
+                href={url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-extrabold text-sm sm:text-base tracking-wider uppercase transition-all duration-300 shadow-[0_0_35px_rgba(16,185,129,0.45)] hover:shadow-[0_0_50px_rgba(16,185,129,0.7)] border border-emerald-200/50 transform hover:-translate-y-1 active:translate-y-0 cursor-pointer"

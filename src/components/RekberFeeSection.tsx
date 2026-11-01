@@ -2,11 +2,22 @@ import React from 'react';
 import { Shield, ShieldCheck, ArrowLeftRight, MessageCircle, ExternalLink, Sparkles, CheckCircle2 } from 'lucide-react';
 import { REKBER_FEE_TIERS } from '../data/rekberFees';
 import { OFFICIAL_PHONE } from '../utils/catalog';
+import { RekberFee } from '../types';
 
-export const RekberFeeSection: React.FC = () => {
-  const whatsappRekberUrl = `https://wa.me/${OFFICIAL_PHONE}?text=${encodeURIComponent(
+interface RekberFeeSectionProps {
+  fees?: RekberFee[];
+  whatsappNumber?: string;
+}
+
+export const RekberFeeSection: React.FC<RekberFeeSectionProps> = ({ fees, whatsappNumber }) => {
+  const phone = whatsappNumber || OFFICIAL_PHONE;
+  const whatsappRekberUrl = `https://wa.me/${phone}?text=${encodeURIComponent(
     'Halo Admin Sinzxsturr (SINZXR JB STORE), saya ingin menggunakan layanan jasa Rekber / Middleman (MC) untuk transaksi akun game. Mohon info dan panduannya min.'
   )}`;
+
+  const displayFees = fees && fees.length > 0
+    ? fees.filter(f => f.is_active !== false).map(f => ({ id: f.id, range: f.range_label, fee: f.fee_label }))
+    : REKBER_FEE_TIERS;
 
   return (
     <section id="rekber" className="py-20 relative overflow-hidden">
@@ -71,7 +82,7 @@ export const RekberFeeSection: React.FC = () => {
 
             {/* Fee Tiers List */}
             <div className="space-y-2.5">
-              {REKBER_FEE_TIERS.map((tier, index) => {
+              {displayFees.map((tier, index) => {
                 return (
                   <div
                     key={tier.id}
